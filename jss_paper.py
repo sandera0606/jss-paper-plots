@@ -14,16 +14,20 @@ var_list = ["species", "island", "bill length (mm)", "bill depth (mm)"]
 
 label_options = {}
 for var in var_list:
-    label_options[var] = {'fontsize': 16}
+    label_options[var] = {'fontsize': 18}
 
-def minimal_example():
-    hammock = hammock_plot.Hammock(df_penguins)
-    ax = hammock.plot(
-        var=var_list,
-        display_figure=False,
-        missing=True,
-        save_path="figures/minimal_example.png",
-    )
+large_label_options = {}
+for var in var_list:
+    large_label_options[var] = {'fontsize': 23}
+
+# def minimal_example():
+#     hammock = hammock_plot.Hammock(df_penguins)
+#     ax = hammock.plot(
+#         var=var_list,
+#         display_figure=False,
+#         missing=True,
+#         save_path="figures/minimal_example.png",
+#     )
 
 def modified_layout():
     hammock = hammock_plot.Hammock(df_penguins)
@@ -32,9 +36,10 @@ def modified_layout():
         display_figure=False,
         missing=True,
         uni_vfill=0.15,
-        label_options=label_options,
-        uni_hfill=0.4,
-        save_path="figures/modified_layout.png",
+        label_options=large_label_options,
+        uni_hfill=0.5,
+        width=18,
+        save_path="figures/minimal_example.png",
     )
 
 def boxplots():
@@ -44,7 +49,7 @@ def boxplots():
         display_figure=False,
         missing=True,
         uni_vfill=0.15,
-        label_options=label_options,
+        label_options=large_label_options,
         label=False,
         uni_hfill=0.4,
         save_path="figures/boxplots.png",
@@ -59,7 +64,7 @@ def violinplots():
         missing=True,
         label=False,
         uni_vfill=0.15,
-        label_options=label_options,
+        label_options=large_label_options,
         uni_hfill=0.4,
         save_path="figures/violinplots.png",
         display_type={"bill length (mm)": "violin", "bill depth (mm)": "violin"},
@@ -73,7 +78,8 @@ def same_scale():
         missing=True,
         uni_vfill=0.15,
         label_options=label_options,
-        uni_hfill=0.4,
+        uni_hfill=0.5,
+        width=18,
         save_path="figures/same_scale.png",
         same_scale=["bill length (mm)", "bill depth (mm)"],
         display_type={"bill length (mm)": "box", "bill depth (mm)": "box"},
@@ -83,18 +89,18 @@ def highlighting():
     hammock = hammock_plot.Hammock(df_penguins)
     ax = hammock.plot(
         var= var_list,
-        hi_var="island",
-        hi_value=["Torgersen", "Biscoe"],
+        hi_var="bill length (mm)",
+        hi_value="x>44.10",
         display_figure=False,
         missing=True,
         uni_vfill=0.15,
         label_options=label_options,
-        uni_hfill=0.4,
+        uni_hfill=0.5,
+        width=18,
         save_path="figures/highlighting.png",
         display_type={"bill length (mm)": "box", "bill depth (mm)": "box"},
     )
 
-minimal_example()
 modified_layout()
 boxplots()
 violinplots()
